@@ -8,7 +8,7 @@ import { DatasrvService } from '../datasrv.service';
 })
 export class Tab2Page {
   public selectedItemsList = [];
-  constructor(public srv: DatasrvService , public alertCtrl: AlertController) { }
+  constructor(public srv: DatasrvService, public alertCtrl: AlertController) { }
 
   addToList(pet, event) {
     console.log(event.target.checked);
@@ -26,45 +26,26 @@ export class Tab2Page {
   From this point out , this.selectedItemsList has all the selected checkboxes only .. go on and do the rest :P
   */
 
- async fishfood(pet) {
-    if (this.selectedItemsList.push(pet)) {
-      if (pet.this.selectedItemsList.type === 'Fish') {
-        const index = this.srv.food.indexOf(pet);
-        this.srv.food.splice(index);
-      } 
-else {
-  const alert = await this.alertCtrl.create({
-    header: ' Wrong type' ,
-    message: 'please select the correct pet',
-    buttons: ['OK'],
-  });
-  alert.present();
+  feed(myType: string) {
+    let isSameType = true;
+    this.selectedItemsList.forEach((item) => {
+      if (item.type !== myType) {
+        isSameType = false;
+      }
+    });
+
+    if (isSameType) {
+      this.srv.food = [];
+      this.selectedItemsList = [];
+    } else {
+      this.alertCtrl.create({
+        header: ' Wrong type',
+        message: 'please select the correct pet',
+        buttons: ['OK']
+      }).then((alert) => alert.present());
+    }
+  }
+
 
 }
-      }
- 
-      // this.selectedItemsList.push(pet);
-    }
 
-   async birdfood(pet){
-      if (this.selectedItemsList.push(pet)) {
-      if (pet.selectedItemsList.type === 'Bird') {
-        const index = this.srv.food.indexOf(pet);
-        this.srv.food.splice(index);
-
-  }
-  else {
-    const alert = await this.alertCtrl.create({
-      header: ' Wrong type' ,
-      message: 'please select the correct pet',
-      buttons: ['OK'],
-    });
-    alert.present();
-  
-  }
-      }}
-
- 
-      }
-
-    
