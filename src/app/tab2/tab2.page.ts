@@ -24,24 +24,17 @@ export class Tab2Page {
   }
 
 
-  /*
-  From this point out , this.srv.food has all the selected checkboxes only .. go on and do the rest :P
-  */
-
   feed(myType: string) {
 
     let isSameType = true;
-    this.indexes.forEach((myIndex) => {
-      console.log(myIndex);
-    });
 
     this.indexes.forEach((myIndex) => {
-        if (this.srv.food[myIndex].type.toLowerCase() !== myType.toLowerCase()){
-          isSameType = false;
-          console.log(`Check for all same ${isSameType}`);
-        }
+      if (this.srv.food[myIndex].type.toLowerCase() !== myType.toLowerCase()) {
+        isSameType = false;
+      }
     });
 
+    console.log(`All Selected are the same ? ${isSameType}`);
 
     if (isSameType) {
       this.indexes.forEach((myIndex) => {
