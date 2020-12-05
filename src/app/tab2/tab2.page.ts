@@ -40,7 +40,13 @@ export class Tab2Page {
           this.srv.food.splice(this.srv.food.indexOf(item));
         }
       });
-      this.selectedItemsList = [];
+
+      this.selectedItemsList.forEach((item) => {
+        if (item.type === myType) {
+          this.selectedItemsList.splice(this.selectedItemsList.indexOf(item));
+        }
+      });
+
     } else {
       this.alertCtrl.create({
         header: ' Wrong type',
