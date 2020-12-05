@@ -8,17 +8,12 @@
 
 <ion-content [fullscreen]="true">
   <ion-list *ngFor="let pet of this.srv.food, index as i">
-    <ion-item >
-      <!-- <ion-label class="checkbox">
-        <input [(ngModel)]="pet"
-               type="checkbox">
-        {{pet.name}} ({{pet.type}})
-      </ion-label> -->
+    <ion-item>
       <ion-label>{{pet.name}} ({{pet.type}})</ion-label>
-      <ion-checkbox slot="start" (ionChange)="addToList(pet,$event)"></ion-checkbox>
+      <ion-checkbox slot="start" (ionChange)="checkboxUpdater($event,i)"></ion-checkbox>
     </ion-item>
   </ion-list>
   <br>
   <ion-button expand="block" fill="solid" color="dark" (click)="feed('Fish')">Fish Food</ion-button>
-  <ion-button expand="block" fill="solid" color="dark" (click)="feed('Bird')">Bird Food</ion-button>  
+  <ion-button expand="block" fill="solid" color="dark" (click)="feed('Bird')">Bird Food</ion-button>
 </ion-content>

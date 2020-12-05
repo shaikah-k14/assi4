@@ -7,48 +7,47 @@ import { DatasrvService } from '../datasrv.service';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  public selectedItemsList = [];
-  constructor(public srv: DatasrvService, public alertCtrl: AlertController) { }
+  indexes: number[] = [];
+  constructor(public srv: DatasrvService, public alertCtrl: AlertController) {
 
-  addToList(pet, event) {
+  }
+
+  checkboxUpdater(event, index) {
     console.log(event.target.checked);
     if (event.target.checked) {
-      this.selectedItemsList.push(pet);
-      console.log(this.selectedItemsList);
+      this.indexes.push(index);
+      console.log(this.indexes);
     } else if (!event.target.checked) {
-      this.selectedItemsList.splice(this.selectedItemsList.indexOf(pet));
-      console.log(this.selectedItemsList);
+      this.indexes = this.indexes.filter(myIndex => myIndex !== index);
+      console.log(this.indexes);
     }
   }
 
 
   /*
-  From this point out , this.selectedItemsList has all the selected checkboxes only .. go on and do the rest :P
+  From this point out , this.srv.food has all the selected checkboxes only .. go on and do the rest :P
   */
 
   feed(myType: string) {
+
     let isSameType = true;
-    this.selectedItemsList.forEach((item) => {
-      if (item.type !== myType) {
-        isSameType = false;
-      }
+    this.indexes.forEach((myIndex) => {
+      console.log(myIndex);
     });
 
+    this.indexes.forEach((myIndex) => {
+        if (this.srv.food[myIndex].type.toLowerCase() !== myType.toLowerCase()){
+          isSameType = false;
+          console.log(`Check for all same ${isSameType}`);
+        }
+    });
+
+
     if (isSameType) {
-
-      this.srv.food.forEach((item) => {
-        if (item.type === myType) {
-          this.srv.food.splice(this.srv.food.indexOf(item));
-        }
+      this.indexes.forEach((myIndex) => {
+        this.srv.food.splice(myIndex, 1);
+        this.indexes = this.indexes.filter(myIndex2 => myIndex2 !== myIndex);
       });
-
-      this.selectedItemsList.forEach((item) => {
-        if (item.type === myType) {
-          this.selectedItemsList.splice(this.selectedItemsList.indexOf(item));
-        }
-      });
-      console.log(this.srv.food);
-      console.log(this.selectedItemsList);
     } else {
       this.alertCtrl.create({
         header: ' Wrong type',
@@ -56,6 +55,7 @@ export class Tab2Page {
         buttons: ['OK']
       }).then((alert) => alert.present());
     }
+
   }
 
 

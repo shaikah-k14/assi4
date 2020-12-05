@@ -17,11 +17,11 @@ export class AddpetPage implements OnInit {
   }
 
   async Add(){
-    this.srv.pets.push({name: this.name, type: this.type});
-    let alert=await this.alertCtrl.create({
-      header: "Success!" ,
-      message: "Pet is added",
-      buttons: ["OK"],
+    this.srv.pets.push({name: this.name, type: this.type, isChecked: false});
+    const alert = await this.alertCtrl.create({
+      header: 'Success!' ,
+      message: 'Pet is added',
+      buttons: ['OK'],
     });
     alert.present();
   }
