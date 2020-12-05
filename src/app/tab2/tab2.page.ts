@@ -46,12 +46,21 @@ else {
       // this.selectedItemsList.push(pet);
     }
 
-    birdfood(pet){
+   async birdfood(pet){
       if (this.selectedItemsList.push(pet)) {
       if (pet.selectedItemsList.type === 'Bird') {
         const index = this.srv.food.indexOf(pet);
         this.srv.food.splice(index);
 
+  }
+  else {
+    const alert = await this.alertCtrl.create({
+      header: ' Wrong type' ,
+      message: 'please select the correct pet',
+      buttons: ['OK'],
+    });
+    alert.present();
+  
   }
       }}
 
