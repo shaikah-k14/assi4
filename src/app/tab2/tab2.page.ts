@@ -1,4 +1,4 @@
-
+import { AlertController } from '@ionic/angular';
 import { Component } from '@angular/core';
 import { DatasrvService } from '../datasrv.service';
 @Component({
@@ -8,7 +8,7 @@ import { DatasrvService } from '../datasrv.service';
 })
 export class Tab2Page {
   public selectedItemsList = [];
-  constructor(public srv: DatasrvService) { }
+  constructor(public srv: DatasrvService , public alertCtrl: AlertController) { }
 
   addToList(pet, event) {
     console.log(event.target.checked);
@@ -26,18 +26,36 @@ export class Tab2Page {
   From this point out , this.selectedItemsList has all the selected checkboxes only .. go on and do the rest :P
   */
 
-  fishfood(pet) {
-    if (pet.isChecked === true) {
-      if (pet.isChecked.type === 'Fish') {
+ async fishfood(pet) {
+    if (this.selectedItemsList.push(pet)) {
+      if (pet.this.selectedItemsList.type === 'Fish') {
         const index = this.srv.food.indexOf(pet);
         this.srv.food.splice(index);
+      } 
+else {
+  const alert = await this.alertCtrl.create({
+    header: ' Wrong type' ,
+    message: 'please select the correct pet',
+    buttons: ['OK'],
+  });
+  alert.present();
+
+}
       }
+ 
       // this.selectedItemsList.push(pet);
     }
 
-
+    birdfood(pet){
+      if (this.selectedItemsList.push(pet)) {
+      if (pet.selectedItemsList.type === 'Bird') {
+        const index = this.srv.food.indexOf(pet);
+        this.srv.food.splice(index);
 
   }
+      }}
 
+ 
+      }
 
-}
+    
