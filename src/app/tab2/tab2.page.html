@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+     Pet Feeding 
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-list *ngFor="let pet of this.srv.food, index as i">
+    <ion-item>
+     <ion-label class="checkbox">
+      <input [(ngModel)]="pet.isChecked" type="checkbox" >
+      {{pet.name}} ({{pet.type}})
+     </ion-label> 
+    </ion-item>
+  </ion-list>
+  <br>
+  <ion-button expand="block" fill="solid" color="dark" (click)="fishfood(pet)">Fish Food</ion-button>
+  <ion-button expand="block" fill="solid" color="dark" (click)="birdfood(pet)">Bird Food</ion-button> 
+</ion-content>
