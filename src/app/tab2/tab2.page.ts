@@ -35,6 +35,7 @@ export class Tab2Page {
     });
 
     if (isSameType) {
+
       this.srv.food.forEach((item) => {
         if (item.type === myType) {
           this.srv.food.splice(this.srv.food.indexOf(item));
@@ -46,7 +47,8 @@ export class Tab2Page {
           this.selectedItemsList.splice(this.selectedItemsList.indexOf(item));
         }
       });
-
+      console.log(this.srv.food);
+      console.log(this.selectedItemsList);
     } else {
       this.alertCtrl.create({
         header: ' Wrong type',
