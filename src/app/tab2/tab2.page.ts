@@ -35,7 +35,11 @@ export class Tab2Page {
     });
 
     if (isSameType) {
-      this.srv.food = [];
+      this.srv.food.forEach((item) => {
+        if (item.type === myType) {
+          this.srv.food.splice(this.srv.food.indexOf(item));
+        }
+      });
       this.selectedItemsList = [];
     } else {
       this.alertCtrl.create({
