@@ -7,19 +7,32 @@ import { DatasrvService } from '../datasrv.service';
   styleUrls: ['tab2.page.scss']
 })
 export class Tab2Page {
-  public selectedItemsList: any = [];
-
+  public selectedItemsList = [];
   constructor(public srv: DatasrvService) { }
 
+  addToList(pet, event) {
+    console.log(event.target.checked);
+    if (event.target.checked) {
+      this.selectedItemsList.push(pet);
+      console.log(this.selectedItemsList);
+    } else if (!event.target.checked) {
+      this.selectedItemsList.splice(this.selectedItemsList.indexOf(pet));
+      console.log(this.selectedItemsList);
+    }
+  }
 
+
+  /*
+  From this point out , this.selectedItemsList has all the selected checkboxes only .. go on and do the rest :P
+  */
 
   fishfood(pet) {
-    if (pet.isChecked == true) {
-      if (pet.isChecked.type === "Fish") {
-        let index = this.srv.food.indexOf(pet);
+    if (pet.isChecked === true) {
+      if (pet.isChecked.type === 'Fish') {
+        const index = this.srv.food.indexOf(pet);
         this.srv.food.splice(index);
       }
-      //this.selectedItemsList.push(pet);
+      // this.selectedItemsList.push(pet);
     }
 
 
